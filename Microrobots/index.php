@@ -119,30 +119,38 @@ function generarCombinaciones($numeros, $colores): array {
             $combinaciones[] = [$numero, $color];
         }
     }
-    //se usa en php para mezcalr aleatoriamente
-    /*
-    [3, 'BLU']
-    [1, 'GRE']
-    [5, 'RED']
-    [6, 'YEL']
-    [2, 'BLA']
-    [4, 'WHI']
-    [1, 'RED']
-    [3, 'GRE']
-    [6, 'BLU']
-    [2, 'WHI']
-    [5, 'YEL']
-    [4, 'BLA']
-    [3, 'RED']
-    [1, 'BLU']
-    [6, 'WHI']
-    [5, 'BLA']
-    [4, 'RED']
-    [2, 'GRE']
-    [3, 'YEL']
-    ...
-    */
-    shuffle($combinaciones);
+    
+    // Ordenamos las combinaciones por número y luego por color alfabéticamente
+    usort($combinaciones, function ($a, $b) {
+
+        // Comparamos primero por número
+
+        /*
+        ejemplo de uso del usort:
+
+        Suponiendo que esto son las combinaciones
+
+        $combinaciones = [
+        [2, 'RED'], --> A
+        [1, 'BLU'], --> B
+        ];
+
+        $A = [2, 'RED'];  // Primer elemento
+        $B = [1, 'BLU'];  // Segundo elemento
+
+        Números: a[0] = 2 y b[0] = 1. Como 2 > 1, devolvemos 2 - 1 = 1.
+        Resultado: [1, 'BLU'] va antes que [2, 'RED']
+
+        */
+        if ($a[0] === $b[0]) {
+
+            // Si los números son iguales, comparamos por color
+            return strcmp($a[1], $b[1]);
+        }
+        // Si los números son diferentes, devolvemos la diferencia numérica
+        return $a[0] - $b[0];
+
+    });
     return $combinaciones; //retornamos el resultado que seria los numeros y los colores aleatoriamente
 }
 
@@ -162,12 +170,12 @@ function generarTablero($combinaciones): array {
     $index = 0;
 
     //generamos 6 filas del tablero
-    for ($i = 0; $i < 6; $i++) {
+    for ($i = 0; $i < 4; $i++) {
         //creamos un array vacio para cada fila
         $fila = [];
         
-        //generamos 6 columnas
-        for ($j = 0; $j < 6; $j++) {
+        //generamos 4 columnas
+        for ($j = 0; $j < 4; $j++) {
             
             //añadimos una combinacion a cada cajon, 
             $fila[] = $combinaciones[$index];
@@ -201,10 +209,9 @@ function dibujarTablero($tablero): void {
         //recorre cada celda de la fila, 
         foreach ($fila as $celda) {
             
-            /*imprimimos texto con el "echo", con el "<td>" creamos la celda de la tabla en HTML, la "$celda[0]" representa
-            el numero, " " el espacio representa un espacio para que no este pegado y la "$celda[1]" seria el color y lo 
+            /*imprimimos texto con el "echo", con el "<td>" creamos la celda de la tabla en HTML, la "$celda[1]" seria el color y lo 
             cerramos*/
-            echo "<td>" . $celda[0] . " " . $celda[1] . "</td>";
+            echo "<td>" .$celda[1] . "</td>";
         }
         echo "</tr>"; //cierra la fila actual 
     }
@@ -218,6 +225,11 @@ function dibujarTablero($tablero): void {
 lo que hacemos es comprobar que la tirada esta bien echa 
 */
 function tiradaValida($tablero, $fila1, $col1, $fila2, $col2): bool {
+
+    //comprobamos que el origen y el destino no esten en la misma celda
+    if ( $fila1 === $fila2 && $col1 === $col2 ){
+        return false;
+    }
     
     // Comprobamos que las celdas de origen y destino no estén ni en la misma fila ni en la misma columna
     // Si ni las filas ni las columnas son iguales, el movimiento no es válido.
@@ -250,9 +262,9 @@ function tiradaValida($tablero, $fila1, $col1, $fila2, $col2): bool {
 
 function tiradaPermitida($fila1, $col1, $fila2, $col2): bool {
     /*
-    comprobamos que o la fila origen y destino estan en la fila o columna, si alguna de estas es verdad devolvera true
+    comprobamos que o la fila origen y destino estan en la fila o columna, si alguna de estas es verdad devolvera true y diagonal
     */
-    return $fila1 === $fila2 || $col1 === $col2;
+    return $fila1 === $fila2 || $col1 === $col2 || abs($fila1 - $fila2) === abs($col1 - $col2);
 }
 
 /*------------------------------------------------------+------------------------------------------------------------------*/
@@ -303,13 +315,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <h3>Introduce las coordenadas</h3>
             <label>Fila inicio:</label>
-            <input type="number" name="fila1" min="0" max="5" required>
+            <input type="number" name="fila1" min="0" max="3" required>
             <label>Columna inicio:</label>
-            <input type="number" name="col1" min="0" max="5" required>
+            <input type="number" name="col1" min="0" max="3" required>
             <label>Fila fin:</label>
-            <input type="number" name="fila2" min="0" max="5" required>
+            <input type="number" name="fila2" min="0" max="3" required>
             <label>Columna fin:</label>
-            <input type="number" name="col2" min="0" max="5" required>
+            <input type="number" name="col2" min="0" max="3" required>
             <button type="submit">Enviar tirada</button>
         </form>
     </body>
