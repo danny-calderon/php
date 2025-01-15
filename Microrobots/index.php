@@ -162,12 +162,12 @@ function generarTablero($combinaciones): array {
     $index = 0;
 
     //generamos 6 filas del tablero
-    for ($i = 0; $i < 6; $i++) {
+    for ($i = 0; $i < 5; $i++) {
         //creamos un array vacio para cada fila
         $fila = [];
         
         //generamos 6 columnas
-        for ($j = 0; $j < 6; $j++) {
+        for ($j = 0; $j < 5; $j++) {
             
             //añadimos una combinacion a cada cajon, 
             $fila[] = $combinaciones[$index];
@@ -204,7 +204,7 @@ function dibujarTablero($tablero): void {
             /*imprimimos texto con el "echo", con el "<td>" creamos la celda de la tabla en HTML, la "$celda[0]" representa
             el numero, " " el espacio representa un espacio para que no este pegado y la "$celda[1]" seria el color y lo 
             cerramos*/
-            echo "<td>" . $celda[0] . " " . $celda[1] . "</td>";
+            echo "<td><i>" . $celda[0] . " " . $celda[1] . "</i></td>";
         }
         echo "</tr>"; //cierra la fila actual 
     }
@@ -248,7 +248,7 @@ function tiradaValida($tablero, $fila1, $col1, $fila2, $col2): bool {
 
 /*------------------------------------------------------+------------------------------------------------------------------*/
 
-function tiradaPermitida($fila1, $col1, $fila2, $col2): bool {
+function movimientovalido($fila1, $col1, $fila2, $col2): bool {
     /*
     comprobamos que o la fila origen y destino estan en la fila o columna, si alguna de estas es verdad devolvera true
     */
@@ -282,7 +282,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fila2 = intval($_POST['fila2']);
     $col2 = intval($_POST['col2']);
 
-    if (tiradaPermitida($fila1, $col1, $fila2, $col2)) {
+    if (movimientovalido($fila1, $col1, $fila2, $col2)) {
 
         if (tiradaValida($tablero, $fila1, $col1, $fila2, $col2)) {
 
@@ -303,13 +303,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <h3>Introduce las coordenadas</h3>
             <label>Fila inicio:</label>
-            <input type="number" name="fila1" min="0" max="5" required>
+            <input type="number" name="fila1" min="0" max="4" required>
             <label>Columna inicio:</label>
-            <input type="number" name="col1" min="0" max="5" required>
+            <input type="number" name="col1" min="0" max="4" required>
             <label>Fila fin:</label>
-            <input type="number" name="fila2" min="0" max="5" required>
+            <input type="number" name="fila2" min="0" max="4" required>
             <label>Columna fin:</label>
-            <input type="number" name="col2" min="0" max="5" required>
+            <input type="number" name="col2" min="0" max="4" required>
             <button type="submit">Enviar tirada</button>
         </form>
     </body>
