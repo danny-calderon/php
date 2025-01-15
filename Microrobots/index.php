@@ -94,11 +94,11 @@ function generarCombinaciones($numeros, $colores): array {
     
     $combinaciones = []; //hacemos un array el cual es el que vamos a retornar 
 
-    //Recorremos la lista de numeros
-    foreach ($numeros as $numero) {
+    //Recorremos la lista de colores
+    foreach ($colores as $color) {
 
         //Redorremos por cada numero cada color en la lista de colores
-        foreach ($colores as $color) {
+        foreach ($numeros as $numero) {
 
             //creamos una lista de cada combinación de colores y numeros, quedaria mas o menos asi 
             /*
@@ -178,6 +178,8 @@ function generarTablero($combinaciones): array {
         $tablero[] = $fila;
     }
 
+    //en un array bidimencional esta es la forma de ambiar una casilla en especifico
+    $tablero [5][5] = [9,'END'];
     //lo retornamos 
     return $tablero;
 }
@@ -201,10 +203,14 @@ function dibujarTablero($tablero): void {
         //recorre cada celda de la fila, 
         foreach ($fila as $celda) {
             
+            //con esto esdarle la condicion si se cumple un style | $style = $celda[0] == 6 ? es como if si la celda del numero
+            //es = 6 se cumple la condicion del fondo rojo 
+            $style = $celda[0] == 6 ? "style='background-color: red;'" : "";
             /*imprimimos texto con el "echo", con el "<td>" creamos la celda de la tabla en HTML, la "$celda[0]" representa
             el numero, " " el espacio representa un espacio para que no este pegado y la "$celda[1]" seria el color y lo 
             cerramos*/
-            echo "<td>" . $celda[0] . " " . $celda[1] . "</td>";
+            echo "<td $style>" . $celda[0] . " " . $celda[1] . "</td>";
+            
         }
         echo "</tr>"; //cierra la fila actual 
     }
@@ -226,6 +232,22 @@ function tiradaValida($tablero, $fila1, $col1, $fila2, $col2): bool {
         // porque el movimiento no puede ser diagonal u otra forma no válida según esta función.
         return false;
     }
+
+    /*
+    permitir movimiento en diagonales, abs es diferencia absoluta, si la diferencia absoluta de la fila y la columna
+    es la misma dara true ejemplo:
+
+    Origen: (2, 2)
+    Destino: (4, 4)
+
+    abs(2 - 4) = 2
+    abs(2 - 4) = 2    
+
+    es = true  
+    */
+    if (abs($fila1 - $fila2) === abs($col1 - $col2)) {
+        return true;
+    }    
 
     // Obtenemos el valor (la pieza) en la celda de origen
     $origen = $tablero[$fila1][$col1];
@@ -250,9 +272,20 @@ function tiradaValida($tablero, $fila1, $col1, $fila2, $col2): bool {
 
 function tiradaPermitida($fila1, $col1, $fila2, $col2): bool {
     /*
-    comprobamos que o la fila origen y destino estan en la fila o columna, si alguna de estas es verdad devolvera true
+    comprobamos que o la fila origen y destino estan en la fila o columna, si alguna de estas es verdad devolvera true, lo 
+    limitamos a 3 celdas
+
+    comprobamos las cantidades aboslutas y si son menores que 3 las dos es true ejemplo:
+
+    Origen: (1, 1)
+    Destino: (3, 3)
+
+    abs(1,3) --> 2 <= 3
+    abs(1,3) --> 2 <= 3
+
+    es true
     */
-    return $fila1 === $fila2 || $col1 === $col2;
+    return abs($fila1 - $fila2) <= 3 && abs($col1 - $col2) <= 3;
 }
 
 /*------------------------------------------------------+------------------------------------------------------------------*/
