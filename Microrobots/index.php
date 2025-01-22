@@ -259,20 +259,20 @@ function tiradaPermitida($fila1, $col1, $fila2, $col2): bool {
 
 //empesamos a hacer uso de las funciones 
 
-//generamos las combinaciones usando la funcion generarcombinaciones
-$combinaciones = generarCombinaciones($numeros,  $colores);
-
-//generamos el tablero con la funcion de generartablero
-$tablero = generarTablero($combinaciones);
-
-//guaradmos en una variable global la variable tamblero para poder utilizarla cuadno queramos en est sesion 
-$_SESSION['tablero'] = $tablero;
-
 //imprimimos un titulo 
 echo "<h3>Tablero Inicial</h3>";
 
-//usando la funcion deibjuamos el tablero 
-dibujarTablero($tablero);
+if(!isset($_SESSION['tablero'])){
+
+    $combinaciones = generarCombinaciones($numeros, $colores);
+    $tablero = generarTablero($combinaciones);    
+    $_SESSION['tablero'] = $tablero;
+ 
+} else {
+ 
+    $tablero = $_SESSION['tablero'];
+
+}
 
 // Comprobamos si la solicitud al servidor es de tipo POST.
 // Esto se utiliza cuando se envía un formulario (en este caso, con las coordenadas de las celdas).
