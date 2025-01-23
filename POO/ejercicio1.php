@@ -24,7 +24,6 @@
             $area = sqrt($s * ($s - $this->a) * ($s - $this->b) * ($s - $this->c));
             
             // Retornamos o mostramos el área
-            echo "Área: " . $area . "<br>";
             return $area;
         }
 
@@ -40,7 +39,6 @@
             $perimetro = $a + $b + $c;
 
             // Retornamos o mostramos el perimetro
-            echo "Área: " . $perimetro . "<br>";
             return $perimetro;
         }
 
