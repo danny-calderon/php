@@ -224,7 +224,7 @@ function tiradaValida($tablero, $fila1, $col1, $fila2, $col2): bool {
     if ($fila1 !== $fila2 && $col1 !== $col2) {
         // Si las celdas no están ni en la misma fila ni en la misma columna, retornamos false
         // porque el movimiento no puede ser diagonal u otra forma no válida según esta función.
-        return false;
+        return true;
     }
 
     // Obtenemos el valor (la pieza) en la celda de origen
