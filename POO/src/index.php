@@ -1,11 +1,6 @@
 <?php
 echo "<h1>Ejercicios POO</h1>";
 
-// Incluir ejercicios
-include 'ejercicio1.php';
-include 'ejercicio2.php';
-include 'ejercicio3.php';
-
 // Agregar enlaces a otros ejercicios para acceso directo
 echo "<ul>
         <li><a href='ejercicio1.php'>Ejercicio 1</a></li>
