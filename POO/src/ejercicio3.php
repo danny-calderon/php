@@ -29,7 +29,7 @@ class Articulo {
         
         $decuento = $this->getprecio() * ($descuento/100);
         $resultado = $this->getprecio() - $decuento;
-        echo "el precio con el descuento aplicado es: ". $resultado . "</br>";
+        echo "el precio con el descuento aplicado es: ". $resultado . "<br>";
     }
 }
 //prueba

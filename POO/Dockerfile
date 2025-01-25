@@ -1,14 +1,11 @@
-# Usar PHP 8.2 con Apache
-FROM php:8.2-apache
+# Usa una imagen base de PHP con Apache
+FROM php:8.1-apache
 
-# Instalar extensiones adicionales si es necesario
-RUN docker-php-ext-install pdo pdo_mysql
+# Copia todos los archivos del proyecto al servidor web en el contenedor
+COPY . /var/www/html/
 
-# Copiar archivos de la aplicación al contenedor
-COPY ./src /var/www/html
+# Establece permisos para los archivos
+RUN chown -R www-data:www-data /var/www/html/
 
-# Ajustar permisos para Apache
-RUN chown -R www-data:www-data /var/www/html
-
-# Exponer el puerto 80
+# Expone el puerto 80 para acceder al servidor web
 EXPOSE 80
