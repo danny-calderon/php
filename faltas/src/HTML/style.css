@@ -1,0 +1,112 @@
+/* Fuente de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f0f0; /* Fondo claro */
+    color: #333; /* Color oscuro para texto */
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Estilo de las etiquetas */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    color: #2A3D66; /* Azul oscuro */
+}
+
+/* Estilo de los inputs, select y textarea */
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc; /* Borde gris suave */
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Cambio de color en el borde al recibir foco */
+input:focus, select:focus, button:focus {
+    border-color: #2A3D66; /* Azul oscuro */
+    outline: none;
+}
+
+/* Estilo para el botón */
+button {
+    background-color: #2A3D66; /* Azul oscuro */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Cambio de color al hacer hover sobre el botón */
+button:hover {
+    background-color: #1A2A4C; /* Azul más oscuro al hacer hover */
+}
+
+/* Estilo para el encabezado */
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #2A3D66; /* Azul oscuro */
+    margin-bottom: 20px; /* Espaciado adicional debajo del encabezado */
+}
+
+/* Agregar espaciado entre elementos */
+form > label, form > input, form > select, form > button {
+    margin-bottom: 15px;
+}
+
+/* Estilo para los avisos de éxito, error e info */
+.aviso {
+    padding: 10px;
+    margin: 15px 0; /* Margen adicional para evitar que se peguen los avisos */
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+/* Aviso de éxito */
+.aviso.exito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Aviso de error */
+.aviso.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Aviso de información */
+.aviso.info {
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+/* Cambio de color del botón al hacer hover */
+button:hover {
+    background-color: #1A2A4C; /* Azul más oscuro */
+}
+
+/* Mejorar accesibilidad: Resaltar botón al enfocar */
+button:focus {
+    box-shadow: 0 0 0 2px #2A3D66; /* Resaltar el botón al enfocar */
+}
