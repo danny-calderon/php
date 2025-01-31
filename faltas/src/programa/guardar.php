@@ -7,6 +7,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //ruta del archivo 
     $archivo = __DIR__ . '/faltas-de-material.xlsx';
     $num_proyecto = $_POST['numero_proyecto'] ?? '';
     $referencia = $_POST['referencia'] ?? '';
@@ -57,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h2>Guardar Datos</h2>
 
+    <!-- Formulario de entrada de datos -->
     <form method="post">
         <label for="numero_proyecto">Número de Proyecto:</label>
         <input type="text" id="numero_proyecto" name="numero_proyecto" required>
@@ -77,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Guardar</button>
     </form>
 
+    <!-- Botón para volver -->
     <a href="index.php"><button>Volver</button></a>
 </body>
 </html>
