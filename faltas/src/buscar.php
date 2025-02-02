@@ -4,23 +4,21 @@ require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-//ruta del archivo
+// Ruta del archivo
 $archivo = __DIR__ . '/faltas-de-material.xlsx';
 $resultados = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_proyecto = $_POST['numero_proyecto'] ?? '';
-    $accion = $_POST['accion'] ?? '';  // Acción de editar
+    $accion = $_POST['accion'] ?? ''; // Acción de editar
 
-    // Si se está editando un proyecto
+    // Si se está editando un proyecto (solo actualización de cantidad)
     if ($accion == 'editar') {
-        $referencia = $_POST['referencia'];
         $cantidad = $_POST['cantidad'];
-        $tipo = $_POST['tipo'];
 
-        // Validar que no haya campos vacíos
-        if (empty($referencia) || empty($cantidad) || empty($tipo)) {
-            $_SESSION['mensaje'] = "<div class='aviso error'>Todos los campos son obligatorios para editar.</div>";
+        // Validar que la cantidad no esté vacía (permitir 0 como valor válido)
+        if ($cantidad === '' || !is_numeric($cantidad)) {
+            $_SESSION['mensaje'] = "<div class='aviso error'>La cantidad no puede estar vacía y debe ser un número válido.</div>";
             header("Location: buscar.php");
             exit();
         }
@@ -36,20 +34,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sheet = $spreadsheet->getActiveSheet();
         $found = false;
 
-        // Buscar el proyecto en el archivo y actualizar
+        // Buscar el proyecto en el archivo y actualizar solo la cantidad
         foreach ($sheet->getRowIterator() as $row) {
             $cell = $sheet->getCell('A' . $row->getRowIndex());
             if ($cell->getValue() == $num_proyecto) {
-                // Actualizar los valores de la fila correspondiente
-                $sheet->setCellValue('B' . $row->getRowIndex(), $referencia);
+                // Actualizar solo la cantidad
                 $sheet->setCellValue('C' . $row->getRowIndex(), $cantidad);
-                $sheet->setCellValue('D' . $row->getRowIndex(), $tipo);
                 $found = true;
                 break;
             }
         }
 
-        // Si el proyecto no fue encontrado
         if (!$found) {
             $_SESSION['mensaje'] = "<div class='aviso error'>No se encontró el proyecto para editar.</div>";
             header("Location: buscar.php");
@@ -60,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
         $writer->save($archivo);
 
-        $_SESSION['mensaje'] = "<div class='aviso exito'>Proyecto actualizado correctamente.</div>";
+        $_SESSION['mensaje'] = "<div class='aviso exito'>Cantidad actualizada correctamente.</div>";
         header("Location: buscar.php");
         exit();
-    } 
-    
+    }
+
     // Si se está buscando el proyecto
     if (empty($accion)) {
         if (empty($num_proyecto)) {
@@ -90,15 +85,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $referencia = $sheet->getCell('B' . $row->getRowIndex())->getValue();
                 $cantidad = $sheet->getCell('C' . $row->getRowIndex())->getValue();
                 $tipo = $sheet->getCell('D' . $row->getRowIndex())->getValue();
+
                 $resultados .= "<p>Referencia: $referencia, Cantidad: $cantidad, Tipo: $tipo</p>";
-                // Agregar formulario para editar
+
+                // Agregar formulario para actualizar solo la cantidad
                 $resultados .= "<form method='post'>
                     <input type='hidden' name='numero_proyecto' value='$num_proyecto'>
-                    <input type='text' name='referencia' value='$referencia' required>
+                    <input type='text' name='referencia' value='$referencia' readonly>
                     <input type='number' name='cantidad' value='$cantidad' required>
-                    <input type='text' name='tipo' value='$tipo' required>
+                    <input type='text' name='tipo' value='$tipo' readonly>
                     <button type='submit' name='accion' value='editar'>Actualizar</button>
                 </form>";
+
                 $found = true;
             }
         }
