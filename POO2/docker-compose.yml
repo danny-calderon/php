@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  php-app:
+    build: .
+    ports:
+      - "8080:80" # Exponemos el puerto 80 del contenedor al puerto 8080 en la máquina host
+    volumes:
+      - ./src:/var/www/html  # Montamos el código fuente en el contenedor
+    container_name: php-app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
