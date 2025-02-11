@@ -1,0 +1,94 @@
+/* Estilos generales para la página */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #f4f4f4, #eaeaea); /* Gradiente de fondo */
+    color: #333; /* Texto oscuro para buena legibilidad */
+}
+
+/* Encabezados principales */
+h2 {
+    color: #4A90E2; /* Azul celeste */
+    text-align: center;
+    margin-bottom: 20px; /* Espacio inferior para separación */
+    font-size: 2em; /* Tamaño de fuente más grande */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra de texto */
+}
+
+/* Formularios y botones */
+form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px; /* Esquinas más redondeadas */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Inputs, selects y botones */
+input, select, button {
+    width: 96%;
+    padding: 12px; /* Mayor padding para comodidad */
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Borde gris claro */
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transición suave para el borde y sombra */
+    text-align: center;
+}
+
+/* Estilo del botón */
+button {
+    background-color: #4A90E2; /* Azul celeste */
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Cambia el color del botón al pasar el cursor (hover) */
+button:hover {
+    background-color: #357ABD; /* Azul más oscuro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra al pasar el cursor */
+}
+
+/* Estilo del enlace de volver */
+a {
+    text-decoration: none; /* Sin subrayado */
+}
+
+a button {
+    background-color: #f1f1f1; /* Fondo gris claro */
+    border: 1px solid #ddd; /* Borde gris claro */
+    color: #333; /* Texto oscuro */
+    font-weight: bold;
+}
+
+/* Cambiar color del botón al pasar el cursor */
+a button:hover {
+    background-color: #ddd; /* Fondo gris más oscuro */
+}
+
+/* Estilo de los mensajes */
+.aviso {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+}
+
+/* Estilo de mensajes de error */
+.aviso.error {
+    background-color: #f8d7da; /* Fondo rojo claro */
+    color: #721c24; /* Texto rojo oscuro */
+    border: 1px solid #f5c6cb; /* Borde rojo claro */
+}
+
+/* Estilo de mensajes de éxito */
+.aviso.exito {
+    background-color: #d4edda; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+    border: 1px solid #c3e6cb; /* Borde verde claro */
+}

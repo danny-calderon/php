@@ -1,0 +1,35 @@
+
+  services:
+    web:
+      build: .
+      container_name: php_mysql
+      ports:
+        - "8080:80"
+      volumes:
+        - .:/var/www/html
+      depends_on:
+        - db
+      networks:
+        - app_network
+
+    db:
+      image: mysql:8.0
+      container_name: mysql_db
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: faltas_Material
+        MYSQL_USER: sa
+        MYSQL_PASSWORD: xxx
+      ports:
+        - "3307:3306"
+      networks:
+        - app_network
+      volumes:
+        - db_data:/var/lib/mysql
+
+  volumes:
+    db_data:
+
+  networks:
+    app_network:
