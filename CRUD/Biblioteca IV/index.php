@@ -36,6 +36,7 @@
         }
         ?>
         <h1>Sistema de Gestión de Libros</h1>
+        <h3>Danny A. Calderon</h3>
         <h2>Añadir Libro</h2>
         <form method="post">
             Título: <input type="text" name="title" required><br>
