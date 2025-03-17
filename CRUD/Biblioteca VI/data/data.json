@@ -1,0 +1,62 @@
+[
+    {
+        "title": "REVISTA 1",
+        "author": "AUTORA 1",
+        "year": 1937,
+        "type": "cine"
+    },
+    {
+        "title": "REVISTA 2",
+        "author": "AUTOR 2",
+        "year": 1967,
+        "type": "manualidades"
+    },
+    {
+        "title": "REVISTA 3",
+        "author": "Ana Pérez",
+        "year": 1985,
+        "type": "ciencia"
+    },
+    {
+        "title": "REVISTA 4",
+        "author": "Carlos Gómez",
+        "year": 2010,
+        "type": "tecnología"
+    },
+    {
+        "title": "El Quijote de la Mancha",
+        "author": "Miguel de Cervantes",
+        "year": 1605,
+        "type": "novela"
+    },
+    {
+        "title": "Cien años de soledad",
+        "author": "Gabriel García Márquez",
+        "year": 1967,
+        "type": "realismo mágico"
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "year": 1949,
+        "type": "distopía"
+    },
+    {
+        "title": "Orgullo y prejuicio",
+        "author": "Jane Austen",
+        "year": 1813,
+        "type": "romance"
+    },
+    {
+        "title": "Matar a un ruiseñor",
+        "author": "Harper Lee",
+        "year": 1960,
+        "type": "drama"
+    },
+    {
+        "title": "Crónica de una muerte anunciada",
+        "author": "Gabriel García Márquez",
+        "year": 1981,
+        "type": "crimen"
+    }
+]
