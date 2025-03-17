@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  php-app:
+    build: .
+    ports:
+      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor
+    volumes:
+      - .:/var/www/html/  # Monta la carpeta src dentro del contenedor
