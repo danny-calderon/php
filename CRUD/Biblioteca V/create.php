@@ -2,18 +2,19 @@
 include "class/BiblioManager.php";
 
 $manager = new BiblioManager();
+$message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST["type"];
-    $title = $_POST["title"];
-    $author = $_POST["author"];
-    $extra = $_POST["extra"]; // Páginas (libro) o tipo (revista)
+    $title = trim($_POST["title"]);
+    $author = trim($_POST["author"]);
+    $extra = trim($_POST["extra"]); // Páginas (libro) o tipo (revista)
 
     if (empty($title) || empty($author) || empty($extra)) {
-        echo "<p style='color:red;'>⚠️ Debes completar todos los campos.</p>";
+        $message = "<p class='error'>⚠️ Debes completar todos los campos.</p>";
     } else {
         $manager->addPublication($title, $author, date("Y"), $extra);
-        echo "<p style='color:green;'>✅ Publicación añadida con éxito.</p>";
+        $message = "<p class='success'>✅ Publicación añadida con éxito.</p>";
     }
 }
 ?>
@@ -40,24 +41,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 <body>
-    <h1>Añadir Libro o Revista</h1>
-    <form method="post">
-        <label>Título:</label>
-        <input type="text" name="title" required>
-        
-        <label>Autor:</label>
-        <input type="text" name="author" required>
-        
-        <label>Tipo:</label>
-        <select name="type" id="type" onchange="updatePlaceholder()">
-            <option value="book">Libro</option>
-            <option value="magazine">Revista</option>
-        </select>
+    <div class="container">
+        <h1>📚 Añadir Libro o Revista</h1>
 
-        <label id="extra-label">Número de páginas / Tipo de revista:</label>
-        <input type="text" name="extra" id="extra" placeholder="Número de páginas" required>
+        <?= $message ?>
 
-        <button type="submit">Añadir</button>
-    </form>
+        <form method="post">
+            <label>Título:</label>
+            <input type="text" name="title" required>
+
+            <label>Autor:</label>
+            <input type="text" name="author" required>
+
+            <label>Tipo:</label>
+            <select name="type" id="type" onchange="updatePlaceholder()">
+                <option value="book">Libro</option>
+                <option value="magazine">Revista</option>
+            </select>
+
+            <label id="extra-label">Número de páginas / Tipo de revista:</label>
+            <input type="text" name="extra" id="extra" placeholder="Número de páginas" required>
+
+            <button type="submit">➕ Añadir</button>
+        </form>
+        
+        <a href="index.php" class="back-btn">⬅ Volver</a>
+    </div>
 </body>
 </html>

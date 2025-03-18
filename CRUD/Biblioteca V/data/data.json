@@ -1,26 +1,158 @@
 [
     {
+        "title": "danny",
+        "author": "danny",
+        "year": 2003,
+        "pages": 100
+    },
+    {
+        "title": "El Quijote de la Mancha",
+        "author": "Servantes",
+        "year": 2025,
+        "pages": 100
+    },
+    {
+        "title": "libro 1",
+        "author": "danny",
+        "year": 2025,
+        "pages": 100
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "year": 1949,
+        "pages": 100
+    },
+    {
+        "title": "Cien a\u00f1os de soledad",
+        "author": "Gabriel Garc\u00eda M\u00e1rquez",
+        "year": 1967,
+        "pages": 100
+    },
+    {
+        "title": "Don Quijote de la Mancha",
+        "author": "Miguel de Cervantes",
+        "year": 1605,
+        "pages": 100
+    },
+    {
+        "title": "Orgullo y prejuicio",
+        "author": "Jane Austen",
+        "year": 1813,
+        "pages": 100
+    },
+    {
+        "title": "Moby-Dick",
+        "author": "Herman Melville",
+        "year": 1851,
+        "pages": 100
+    },
+    {
+        "title": "Crimen y castigo",
+        "author": "Fi\u00f3dor Dostoyevski",
+        "year": 1866,
+        "pages": 100
+    },
+    {
+        "title": "La Odisea",
+        "author": "Homero",
+        "year": -800,
+        "pages": 100
+    },
+    {
+        "title": "El se\u00f1or de los anillos",
+        "author": "J.R.R. Tolkien",
+        "year": 1954,
+        "pages": 100
+    },
+    {
+        "title": "Ulises",
+        "author": "James Joyce",
+        "year": 1922,
+        "pages": 100
+    },
+    {
+        "title": "La divina comedia",
+        "author": "Dante Alighieri",
+        "year": 1320,
+        "pages": 100
+    },
+    {
         "title": "REVISTA 1",
         "author": "AUTORA 1",
         "year": 1937,
-        "type": "cine"
+        "type": "magazine"
     },
     {
         "title": "REVISTA 2",
         "author": "AUTOR 2",
         "year": 1967,
-        "type": "Manualidades"
+        "type": "magazine"
     },
     {
-        "title": "danny",
-        "author": "danny",
-        "year": 2003,
-        "type": "12"
+        "title": "National Geographic",
+        "author": "National Geographic Society",
+        "year": 1888,
+        "type": "magazine"
     },
     {
-        "title": "El Quijote de la mancha",
-        "author": "Servantes",
+        "title": "TIME",
+        "author": "Time USA, LLC",
+        "year": 1923,
+        "type": "magazine"
+    },
+    {
+        "title": "Scientific American",
+        "author": "Springer Nature",
+        "year": 1845,
+        "type": "magazine"
+    },
+    {
+        "title": "Forbes",
+        "author": "Forbes Media LLC",
+        "year": 1917,
+        "type": "magazine"
+    },
+    {
+        "title": "Vogue",
+        "author": "Cond\u00e9 Nast",
+        "year": 1892,
+        "type": "magazine"
+    },
+    {
+        "title": "Rolling Stone",
+        "author": "Penske Media Corporation",
+        "year": 1967,
+        "type": "magazine"
+    },
+    {
+        "title": "National Geographic Kids",
+        "author": "National Geographic Society",
+        "year": 1975,
+        "type": "magazine"
+    },
+    {
+        "title": "Scientific American Mind",
+        "author": "Springer Nature",
+        "year": 2004,
+        "type": "magazine"
+    },
+    {
+        "title": "The New Yorker",
+        "author": "Cond\u00e9 Nast",
+        "year": 1925,
+        "type": "magazine"
+    },
+    {
+        "title": "Popular Mechanics",
+        "author": "Hearst Communications",
+        "year": 1902,
+        "type": "magazine"
+    },
+    {
+        "title": "micha",
+        "author": "Michael",
         "year": 2025,
-        "type": "299"
+        "type": "23"
     }
 ]

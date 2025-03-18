@@ -1,8 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 20px;
-    padding: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6E8EF5, #88D3CE);
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,43 +10,65 @@ body {
 }
 
 .container {
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 400px;
     max-width: 90%;
-    margin: 50px;
+    text-align: center;
 }
 
-h2 {
+h1 {
     color: #333;
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
-form {
-    margin-bottom: 20px;
+.info {
+    color: #666;
+    font-style: italic;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="submit"] {
-    width: calc(100% - 22px);
+.magazine-list {
+    list-style: none;
+    padding: 0;
+}
+
+.magazine-item {
+    background: #f4f4f4;
     padding: 10px;
-    margin: 5px 0 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    margin: 8px 0;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-input[type="submit"] {
-    background-color: #4CAF50;
+.delete-btn {
+    background: #e74c3c;
     color: white;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #2980b9;
 }

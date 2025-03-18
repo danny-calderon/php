@@ -19,8 +19,14 @@ class Book extends Publication{
     }
 
     public static function fromArray(array $data): Book {
-        return new Book($data['title'], $data['author'], $data['year'], $data['pages']);
+        return new Book(
+            $data['title'] ?? 'Sin título',
+            $data['author'] ?? 'Desconocido',
+            $data['year'] ?? 0,
+            isset($data['pages']) ? (int) $data['pages'] : 100 // Valor predeterminado
+        );
     }
+    
 
     public function toArray(): array {
         return [

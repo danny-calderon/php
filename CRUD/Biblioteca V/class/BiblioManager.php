@@ -18,15 +18,18 @@ class BiblioManager {
             $data = json_decode(file_get_contents($this->filePath), true);
             if ($data && is_array($data)) {
                 foreach ($data as $array) {
-                    if (isset($array['pages'])) {
-                        $this->books[] = Book::fromArray($array);
-                    } elseif (isset($array['type'])) {
-                        $this->magazines[] = Magazine::fromArray($array);
+                    if (isset($array['type'])) {
+                        if ($array['type'] === "book") {
+                            $this->books[] = Book::fromArray($array);
+                        } elseif ($array['type'] === "magazine") {
+                            $this->magazines[] = Magazine::fromArray($array);
+                        }
                     }
                 }
             }
         }
     }
+    
 
     // Añadir una nueva publicación
     public function addPublication(string $title, string $author, int $year, $var): void {
@@ -40,8 +43,11 @@ class BiblioManager {
 
     // Leer libros
     public function getBooks(): array {
-        return $this->books;
-    }
+    return array_filter($this->books, function($book) {
+        return $book instanceof Book; // Filtra solo objetos de la clase Book
+    });
+}
+
 
     // Leer revistas
     public function getMagazines(): array {
