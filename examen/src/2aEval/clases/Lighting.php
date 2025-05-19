@@ -118,8 +118,8 @@ class Lighting extends Connection
     {
         $sql = "UPDATE lamps SET lamp_on = :status WHERE lamp_id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
 
         return $stmt->execute();
     }

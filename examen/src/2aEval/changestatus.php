@@ -1,9 +1,8 @@
 <?php
-// changestatus.php
 session_start();
 require_once __DIR__ . '/clases/Lighting.php';
 
-// Datos de conexión a la base de datos
+// Datos de conexión a la base de datos (ajusta según tu Docker y conf.json si usas)
 $host = 'db';          // Nombre del servicio MySQL en Docker
 $dbname = 'examen';    // Nombre de la base de datos
 $user = 'root';        // Usuario
@@ -25,25 +24,21 @@ try {
     die('Error al conectar a la base de datos: ' . $e->getMessage());
 }
 
-// Instancia Lighting con la conexión PDO
+// Instanciar Lighting con PDO
 $lighting = new Lighting($pdo);
 
-// Obtener id y status desde GET
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$status = isset($_GET['status']) ? $_GET['status'] : '0';
+// Obtener id y status de GET
+$id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+$status = isset($_GET['status']) ? (int)$_GET['status'] : 0;
 
-// Convertir el status a entero 0 o 1 (por si viene como "on"/"off")
-if ($status === 'on' || $status === '1' || $status === 1) {
-    $status = 1;
-} else {
-    $status = 0;
-}
+// Validar status para que sea 0 o 1
+$status = ($status === 1) ? 1 : 0;
 
-// Cambiar estado solo si id válido
-if ($id > 0) {
+// Cambiar estado si id válido
+if (!empty($id)) {
     $lighting->changeStatus($id, $status);
 }
 
-// Redirigir a la página principal (ajusta según corresponda)
+// Redirigir a la página principal o donde muestres las lámparas
 header('Location: index.php');
 exit;
