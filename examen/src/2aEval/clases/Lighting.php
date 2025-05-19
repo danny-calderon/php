@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/Connection.php';
+require_once __DIR__ . '/Lamp.php';
+
 class Lighting extends Connection
 {
     private string|int $currentFilter = 'all';
@@ -137,3 +140,4 @@ class Lighting extends Connection
         return $html;
     }
 }
+?>

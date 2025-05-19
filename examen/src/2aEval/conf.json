@@ -1,6 +1,7 @@
 {
-    "host": "db",
+    "host": "db",    
+    "db": "stadium",
     "userName": "root",
-    "password": "test",
-    "db": "examen"
-}
+    "password": "test"
+  }
+  

@@ -6,6 +6,8 @@ COPY . /var/www/html/
 
 # Establece permisos para los archivos
 RUN chown -R www-data:www-data /var/www/html/
+RUN docker-php-ext-install pdo pdo_mysql
+
 
 # Expone el puerto 80 para acceder al servidor web
 EXPOSE 80
