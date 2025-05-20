@@ -1,54 +1,62 @@
 <?php
+// Iniciamos la sesión
 session_start();
+
+// Incluimos la clase principal de lógica (Lighting)
 require_once 'clases/Lighting.php'; // Asegúrate de que la ruta sea correcta
 
-// Configura la conexión PDO
+// Cargamos los datos de conexión desde el archivo JSON
 $configPath = __DIR__ . '/conf.json';
 $config = json_decode(file_get_contents($configPath), true);
 
+// Verificamos si el archivo conf.json se pudo leer correctamente
 if (!is_array($config)) {
     die("Error al leer conf.json");
 }
 
+// Asignamos cada valor del archivo de configuración a variables
 $host = $config['host'] ?? null; 
 $dbname = $config['db'] ?? null;
 $user = $config['userName'] ?? null;
 $password = $config['password'] ?? null;
 
-
 try {
+    // Creamos el objeto PDO para conectarnos a la base de datos
     $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
     $pdo = new PDO($dsn, $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
+    // Si ocurre un error, lo mostramos y detenemos la ejecución
     die("Error al conectar con la base de datos: " . $e->getMessage());
 }
 
+// Creamos una instancia de Lighting pasando la conexión PDO
 $lighting = new Lighting($pdo);
 
-// Manejo de la lógica para cambiar el estado de las lámparas
+// Comprobamos si se ha enviado una petición para cambiar el estado de una lámpara
 if (isset($_GET['action']) && $_GET['action'] === 'changeStatus') {
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
     $status = isset($_GET['status']) ? (int)$_GET['status'] : 0;
 
     if ($id > 0) {
-        $lighting->changeStatus($id, $status);
+        $lighting->changeStatus($id, $status); // Cambiamos el estado
     }
 
-    // Redirige a la misma página para evitar reenvíos de formulario
+    // Redirigimos para evitar reenviar el formulario al refrescar
     header("Location: index.php");
     exit;
 }
 
-// Establecer un filtro de zona si se proporciona
+// Si se ha seleccionado una zona, la usamos como filtro
 if (isset($_GET['zone_id'])) {
     $lighting->setFilterZone($_GET['zone_id']);
 }
 
-// Obtener todas las lámparas
+// Obtenemos todas las lámparas, ya sea todas o filtradas por zona
 $lamps = $lighting->getAllLamps();
 ?>
 
+<!-- Comienza la parte HTML -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,6 +65,8 @@ $lamps = $lighting->getAllLamps();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- Estilos CSS internos -->
     <style>
         body {
             background-color: lightcyan;
@@ -114,22 +124,26 @@ $lamps = $lighting->getAllLamps();
 <body>
     <div class="center">
         <h1>BIG STADIUM - LIGHTING CONTROL PANEL</h1>
+
+        <!-- Formulario para seleccionar la zona -->
         <form action="" method="get">
             <select name="zone_id">
                 <option value='all'>All</option>
                 <?php
-                // Generar opciones de zonas
+                // Mostramos las opciones de zona disponibles
                 echo $lighting->drawZonesOptions();
                 ?>
             </select>
             <input type="submit" value="Filter by zone">
         </form>
 
+        <!-- Mostramos cada lámpara como una caja con su estado -->
         <?php foreach ($lamps as $lamp): ?>
             <div class='element <?= $lamp->getisOn() ? 'on' : 'off' ?>'>
                 <h4>
-                <a href='changestatus.php?id=<?= $lamp->getId() ?>&status=<?= $lamp->getisOn() ? 0 : 1 ?>'>
-                <img src='img/bulb-icon-<?= $lamp->getisOn() ? 'on' : 'off' ?>.png'>
+                    <!-- Al hacer clic en la bombilla, se cambia su estado -->
+                    <a href='changestatus.php?id=<?= $lamp->getId() ?>&status=<?= $lamp->getisOn() ? 0 : 1 ?>'>
+                        <img src='img/bulb-icon-<?= $lamp->getisOn() ? 'on' : 'off' ?>.png'>
                     </a>
                     <?= htmlspecialchars($lamp->getName()) ?>
                 </h4>
