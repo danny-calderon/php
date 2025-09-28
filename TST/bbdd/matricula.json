@@ -1,0 +1,17 @@
+[
+    {"matricula": "bc3050", "tipo": "enfriadora"},
+    {"matricula": "bc3051", "tipo": "caldera"},
+    {"matricula": "bc3052", "tipo": "aire acondicionado"},
+    {"matricula": "bc3053", "tipo": "ventilador"},
+    {"matricula": "bc3054", "tipo": "enfriadora"},
+    {"matricula": "bc3055", "tipo": "bomba de calor"},
+    {"matricula": "bc3056", "tipo": "caldera"},
+    {"matricula": "bc3057", "tipo": "enfriadora"},
+    {"matricula": "bc3058", "tipo": "aire acondicionado"},
+    {"matricula": "bc3059", "tipo": "ventilador"},
+    {"matricula": "bc3060", "tipo": "bomba de calor"},
+    {"matricula": "bc3061", "tipo": "caldera"},
+    {"matricula": "bc3062", "tipo": "enfriadora"},
+    {"matricula": "bc3063", "tipo": "aire acondicionado"},
+    {"matricula": "bc3064", "tipo": "ventilador"}
+]
